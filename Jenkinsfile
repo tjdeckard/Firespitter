@@ -75,7 +75,7 @@ pipeline {
               $ArtifactPath = Join-Path -Path $CachePath -ChildPath "Firespitter"
               Remove-Item -Path $ArtifactPath -Recurse -Force
               Write-Output "Caching new artifacts..."
-              Copy-Item -Path ./FOR_RELEASE/Firespitter/* -Destination $CachePath -Recurse
+              Copy-Item -Path ./FOR_RELEASE/* -Destination $CachePath -Recurse
             })
           }
           catch {
