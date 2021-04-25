@@ -63,7 +63,6 @@ pipeline {
             $ReleaseFolder = "usi-releases"
             $ReleasePath = Join-Path -Path $DriveRoot -ChildPath $ReleaseFolder
             Write-Output "Releases folder location is: $ReleasePath"
-            New-Item -Path $DriveRoot -Name $ReleaseFolder -ItemType Directory -Force
             Write-Output "Determining artifact folder locations..."
             $CacheNames = $env:ARTIFACT_CACHES.Split(",")
             $CacheNames.ForEach({
@@ -93,8 +92,9 @@ pipeline {
             Remove-Item -Path "./artifacts/*" -Recurse -Force
           }
           New-Item -Path . -Name "artifacts" -ItemType Directory -Force
-          Copy-Item -Path ./FOR_RELEASE/* -Destination ./artifacts/GameData/ -Recurse
-          Copy-Item -Path ./*.txt -Destination ./artifacts/GameData/Firespitter/
+          New-Item -Path ./artifacts -Name "GameData" -ItemType Directory -Force
+          Copy-Item -Path ./FOR_RELEASE/* -Destination ./artifacts/GameData -Recurse
+          Copy-Item -Path ./*.txt -Destination ./artifacts/GameData/Firespitter
         '''
         script {
           env.ARCHIVE_FILENAME = "Firespitter_${env.GITVERSION_SEMVER}.zip"
