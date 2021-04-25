@@ -50,7 +50,7 @@ pipeline {
     // Build
     stage("Build") {
       steps {
-        bat "dotnet build --output FOR_RELEASE/GameData/Firespitter/Plugins --configuration ${env.BUILD_CONFIG} --verbosity detailed ./Firespitter/Firespitter.csproj"
+        bat "dotnet build --output FOR_RELEASE/Firespitter/Plugins --configuration ${env.BUILD_CONFIG} --verbosity detailed ./Firespitter/Firespitter.csproj"
       }
     }
     // Update artifact cache
@@ -75,7 +75,7 @@ pipeline {
               $ArtifactPath = Join-Path -Path $CachePath -ChildPath "Firespitter"
               Remove-Item -Path $ArtifactPath -Recurse -Force
               Write-Output "Caching new artifacts..."
-              Copy-Item -Path ./FOR_RELEASE/GameData/* -Destination $CachePath -Recurse
+              Copy-Item -Path ./FOR_RELEASE/Firespitter/* -Destination $CachePath -Recurse
             })
           }
           catch {
