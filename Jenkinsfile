@@ -93,8 +93,8 @@ pipeline {
             Remove-Item -Path "./artifacts/*" -Recurse -Force
           }
           New-Item -Path . -Name "artifacts" -ItemType Directory -Force
-          Copy-Item -Path ./FOR_RELEASE/* -Destination ./artifacts/GameData -Recurse
-          Copy-Item -Path ./*.txt -Destination ./artifacts/GameData/Firespitter
+          Copy-Item -Path ./FOR_RELEASE/* -Destination ./artifacts/GameData/ -Recurse
+          Copy-Item -Path ./*.txt -Destination ./artifacts/GameData/Firespitter/
         '''
         script {
           env.ARCHIVE_FILENAME = "Firespitter_${env.GITVERSION_SEMVER}.zip"
