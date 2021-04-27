@@ -94,7 +94,7 @@ pipeline {
           New-Item -Path . -Name "artifacts" -ItemType Directory -Force
           New-Item -Path ./artifacts -Name "GameData" -ItemType Directory -Force
           Copy-Item -Path ./FOR_RELEASE/* -Destination ./artifacts/GameData -Recurse
-          Copy-Item -Path ./*.txt -Destination ./artifacts/GameData/Firespitter
+          Copy-Item -Path ./*.txt -Destination ./artifacts
         '''
         script {
           env.ARCHIVE_FILENAME = "Firespitter_${env.GITVERSION_SEMVER}.zip"
